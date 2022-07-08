@@ -3,17 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ADITUS.CodeChallenge.API
 {
-  public class EventController : ControllerBase
+  [Route("events")]
+  public class EventsController : ControllerBase
   {
     private readonly IEventService _eventService;
 
-    public EventController(IEventService eventService)
+    public EventsController(IEventService eventService)
     {
       _eventService = eventService;
     }
 
     [HttpGet]
-    [Route("events/{id}")]
+    [Route("")]
+    public async Task<IActionResult> GetEvents()
+    {
+      var events = await _eventService.GetEvents();
+      return Ok(events);
+    }
+
+    [HttpGet]
+    [Route("{id}")]
     public async Task<IActionResult> GetEvent(Guid id)
     {
       var @event = await _eventService.GetEvent(id);
@@ -23,14 +32,6 @@ namespace ADITUS.CodeChallenge.API
       }
 
       return Ok(@event);
-    }
-
-    [HttpGet]
-    [Route("events")]
-    public async Task<IActionResult> GetEvents()
-    {
-      var events = await _eventService.GetEvents();
-      return Ok(events);
     }
   }
 }
