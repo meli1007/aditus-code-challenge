@@ -43,7 +43,7 @@ Statistiken für Vor-Ort-Veranstaltungen | GET https://onsite-eventstatistics.az
 
 Nach Ende einer jeden Veranstaltung soll ein sogenannter Veranstaltungsabschluss durchgeführt werden können. 
 
-Bei einem Veranstaltungsabschluss werden nicht mehr benötigte Daten im System bereinigt werden. Welche Daten bereingt werden sollen, muss bei der Planung des Prozesses festgelegt werden. Folgende Daten-Typen können für die Auswahl berücksichtigt werden:
+Bei einem Veranstaltungsabschluss werden nicht mehr benötigte Daten im System bereinigt. Welche Daten bereingt werden sollen, muss bei der Planung des Prozesses festgelegt werden. Folgende Daten-Typen können für die Auswahl berücksichtigt werden:
 
 - unbenutzte Tickets
 - unbenutzte Gutscheine
@@ -54,6 +54,7 @@ Die Durchführung des Prozesses erfolgt asynchron zu dem geplanten Ausführungsz
 
 ### Schnittstellen-Anforderung
 
-Über die Schnittstelle soll der Prozess zum Veranstaltungsabschluss angestoßen werden können und jederzeit den aktuellen den Status des Prozesses abgerufen werden können. Außerdem sollen den Schnittstellen-Konsumenten die beschriebenen Voraussetzungen für die Planung und Durchführung des Prozesses bereitgestellt werden.
+Über die Schnittstelle soll der Prozess zum Veranstaltungsabschluss angestoßen werden können und jederzeit den aktuellen den Status des Prozesses abgerufen werden können.
+Die Konsumenten der Schnittstellen sollen die Information, ob ein Veranstaltungsabschluss für eine Veranstaltung durchgeführt werden kann, abrufen können.
 
-*Hinweis: Die Schnittstelle soll erstmal eine Mock-Implementierung des Prozesses verwenden, die zusätzlich geschaffen werden muss*
+*Hinweis: Die Schnittstelle soll eine Mock-Implementierung des Veranstaltungsabschlusses verwenden, die zusätzlich geschaffen werden muss*
