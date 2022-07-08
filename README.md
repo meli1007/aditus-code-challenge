@@ -28,9 +28,9 @@ Type        | Typ der Veranstaltung (mögliche Werte: OnSite, Online, Hybrid)
 
 ### 1. Veranstaltungs-Statistiken
 
-Der Endpunkt zum Abrufen einer Veranstaltung soll um die Ermittlung und Ausgaben von Statistiken der jeweiligen Veranstaltung erweitert werden, hierbei gilt es eine sinnvolle Struktur für die Integration in das bestehende Schnittstellen-Schema zu wählen.
+Der Endpunkt zum Abrufen einer Veranstaltung soll um die Ermittlung und Ausgabe von Statistiken der jeweiligen Veranstaltung erweitert werden, hierbei gilt es eine sinnvolle Struktur für die Integration in das bestehende Schnittstellen-Schema zu wählen.
 
-Je nach Event-Typ müssen unterschiedliche Datenquellen für den Abruf der Statistiken verwendet werden. Sollte es sich um eine hybride Veranstaltung handeln, müssen beide Datenquellen herangezogen werden.
+Je nach Veranstaltungs-Typ müssen unterschiedliche Datenquellen für den Abruf der Statistiken verwendet werden. Sollte es sich um eine hybride Veranstaltung handeln, müssen beide Datenquellen herangezogen werden.
 
 Datenquelle                             | URL
 --------------------------------------- | ------------------------ 
@@ -41,16 +41,16 @@ Statistiken für Vor-Ort-Veranstaltungen | GET https://onsite-eventstatistics.az
 
 ### Prozessbeschreibung
 
-Nach Ende einer jeden Veranstaltung soll ein sogenannter Veranstaltungsabschluss durchgeführt werden können. 
+Nach Ende einer jeden Veranstaltung soll ein sogenannter "Veranstaltungsabschluss" durchgeführt werden können. 
 
 Bei einem Veranstaltungsabschluss werden nicht mehr benötigte Daten im System bereinigt. Welche Daten bereingt werden sollen, muss bei der Planung des Prozesses festgelegt werden. Folgende Daten-Typen können für die Auswahl berücksichtigt werden:
 
 - unbenutzte Tickets
 - unbenutzte Gutscheine
 
-Nach der Durchführung des Veranstaltungsabschlusses soll für jeden Daten-Typ die Information bereitgestellt werden, wie viele Datensätze betroffen sind.
+Nach der Durchführung des Veranstaltungsabschlusses soll für jeden Daten-Typen die Information bereitgestellt werden, wie viele Datensätze betroffen sind.
 
-Die Durchführung des Prozesses erfolgt asynchron zu dem geplanten Ausführungszeitpunkt. Ein Veranstaltungsabschluss darf erst nach dem Ende der jeweiligen Veranstaltung geplant werden.
+Die Durchführung des Prozesses soll zu einem geplanten Ausführungszeitpunkt geschehen. Ein Veranstaltungsabschluss darf erst nach dem Ende der jeweiligen Veranstaltung geplant werden.
 
 ### Schnittstellen-Anforderung
 
