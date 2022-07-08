@@ -12,7 +12,7 @@ namespace ADITUS.CodeChallenge.API.Services
       {
         new Event
         {
-          Id = Guid.NewGuid(),
+          Id = Guid.NewGuid(), // TODO: fixed guid
           Year = 2019,
           Name = "ADITUS Code Challenge 2019",
           StartDate = new DateTime(2019, 1, 1),
@@ -50,7 +50,7 @@ namespace ADITUS.CodeChallenge.API.Services
         {
           Id = Guid.NewGuid(),
           Year = 2023,
-          Name = "ADITUS Code Challenge 2022",
+          Name = "ADITUS Code Challenge 2023",
           StartDate = new DateTime(2023, 1, 1),
           EndDate = new DateTime(2023, 1, 23),
           Type = EventType.OnSite

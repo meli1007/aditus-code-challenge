@@ -56,5 +56,4 @@ Die Durchführung des Prozesses erfolgt asynchron zu dem geplanten Ausführungsz
 
 Über die Schnittstelle soll der Prozess zum Veranstaltungsabschluss angestoßen werden können und jederzeit den aktuellen den Status des Prozesses abgerufen werden können. Außerdem sollen den Schnittstellen-Konsumenten die beschriebenen Voraussetzungen für die Planung und Durchführung des Prozesses bereitgestellt werden.
 
-*Hinweis: Die Schnitts
-telle soll erstmal eine Mock-Implementierung des Prozesses verwenden, die zusätzlich geschaffen werden muss*
+*Hinweis: Die Schnittstelle soll erstmal eine Mock-Implementierung des Prozesses verwenden, die zusätzlich geschaffen werden muss*
