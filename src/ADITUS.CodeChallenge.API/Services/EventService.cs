@@ -12,7 +12,7 @@ namespace ADITUS.CodeChallenge.API.Services
       {
         new Event
         {
-          Id = Guid.Parse("7c63631c-18d4-4395-9c1e-886554265eb0"), // TODO: fixed guid
+          Id = Guid.Parse("7c63631c-18d4-4395-9c1e-886554265eb0"),
           Year = 2019,
           Name = "ADITUS Code Challenge 2019",
           StartDate = new DateTime(2019, 1, 1),
@@ -58,7 +58,7 @@ namespace ADITUS.CodeChallenge.API.Services
       };
     }
 
-    public Task<Event?> GetEvent(Guid id)
+    public Task<Event> GetEvent(Guid id)
     {
       var @event = _events.FirstOrDefault(e => e.Id == id);
       return Task.FromResult(@event);
