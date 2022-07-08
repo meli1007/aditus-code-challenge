@@ -3,6 +3,7 @@
 ## Voraussetzungen
 
 - .NET6-SDK
+- VSCode oder Visual Studio
 
 ## Kontext
 
