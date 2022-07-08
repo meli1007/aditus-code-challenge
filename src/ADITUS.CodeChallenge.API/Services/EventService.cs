@@ -45,6 +45,15 @@ namespace ADITUS.CodeChallenge.API.Services
           StartDate = new DateTime(2022, 1, 1),
           EndDate = new DateTime(2022, 1, 11),
           Type = EventType.Online
+        },
+        new Event
+        {
+          Id = Guid.NewGuid(),
+          Year = 2023,
+          Name = "ADITUS Code Challenge 2022",
+          StartDate = new DateTime(2023, 1, 1),
+          EndDate = new DateTime(2023, 1, 23),
+          Type = EventType.OnSite
         }
       };
     }
