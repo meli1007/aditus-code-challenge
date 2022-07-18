@@ -5,6 +5,12 @@
 - .NET6-SDK
 - VSCode oder Visual Studio
 
+## Bearbeitungshinweis
+
+Zur Bearbeitung der Code-Challenge dieses Git-Repository mittels clonen.
+Anschließend die Repository in VSCode oder im Visual Studio öffnen und mit der Lösung der Aufgaben beginnen.
+Nach Abschluss der Bearbeitung den Source-Code als ZIP-Archiv per E-Mail dem Ansprechpartner bei ADITUS bereitstellen. 
+
 ## Kontext
 
 Das Projekt beeinhaltet eine REST-HTTP-Schnittstelle, die Informationen über Veranstaltungen bereitstellt.
@@ -18,7 +24,7 @@ Zu einer jeden Veranstaltung liegen folgende Informationen vor:
 Information | Beschreibung
 ----------- | ------------ 
 ID          | Kennung der Veranstaltung  
-Jahr        | Jahr der Veranstaltung 
+Year        | Jahr der Veranstaltung 
 Name        | Name der Veranstaltung 
 StartDate   | Startdatum der Veranstaltung 
 EndDate     | Enddatum der Veranstaltung 
@@ -28,33 +34,38 @@ Type        | Typ der Veranstaltung (mögliche Werte: OnSite, Online, Hybrid)
 
 ### 1. Veranstaltungs-Statistiken
 
-Der bestehende Endpunkt zum Abrufen einer Veranstaltung soll um die Ermittlung und Ausgabe von Statistiken der jeweiligen Veranstaltung erweitert werden, hierbei gilt es eine sinnvolle Struktur für die Integration in das bestehende Schnittstellen-Schema zu wählen.
+Der bestehende Endpunkt zum Abrufen einer Veranstaltung soll um die Ermittlung und anschließender Ausgabe von Statistiken erweitert werden. 
 
-Je nach Veranstaltungs-Typ müssen unterschiedliche Datenquellen für den Abruf der Statistiken verwendet werden. Sollte es sich um eine hybride Veranstaltung handeln, müssen beide Datenquellen herangezogen werden.
+Zur Ermittlung der Statistiken einer Veranstaltung müssen Datenquellen angebunden werden. Diese Datenquellen können per HTTP-Schnittstelle angesprochen werden.
+Je nach Typ der Veranstaltung können folgende URLs angefragt werden, um die Statistiken abzurufen:
 
 Datenquelle                             | URL
 --------------------------------------- | ------------------------ 
 Statistiken für Online-Veranstaltungen  | GET https://onlineevent-statistics.azurewebsites.net/api/statistics/:eventId
 Statistiken für Vor-Ort-Veranstaltungen | GET https://onsite-eventstatistics.azurewebsites.net/api/:id
 
-### 2. Prozess zum Veranstaltungsabschluss
+Für den Fall, dass eine Veranstaltung vom Typ "Hybrid" ist, müssen die Statistiken von beiden Datenquellen abgerufen werden.
 
-### Prozessbeschreibung
+### 2. Hardware-Reservierung einer Veranstaltung
 
-Nach Ende einer jeden Veranstaltung soll ein sogenannter "Veranstaltungsabschluss" durchgeführt werden können. 
+Die Schnittstelle soll um einen Prozess zur Reservierung von Hardware zur Zutrittskontrolle erweitert werden.
+Für eine Hardware-Reservierung muss mitgeteilt werden, welche Hardware-Komponenten in welcher Menge für die Veranstaltung benötigt werden.
+Die Reservierung der Hardware ist nur möglich, wenn die Reservierung mindestens 4 Woche vor Veranstaltungsdurchführung getätigt wird, die gewünschte Hardware in ausreichender Menge verfügbar ist und noch keine Hardware für die gewählte Veranstaltung reserviert wurde. Nachdem die Hardware-Reservierung angefragt wurde, steht noch eine Freigabe der Reservierung aus.
 
-Bei einem Veranstaltungsabschluss werden nicht mehr benötigte Daten im System bereinigt. Welche Daten bereingt werden sollen, muss bei der Planung des Prozesses festgelegt werden. Folgende Daten-Typen können für die Auswahl berücksichtigt werden:
+Die Schnittstellen-Konsumenten sollen jederzeit den Status des aktuellen Prozesses und die reservierten Hardware-Komponenten mitsamt der reservierten Menge abfragen können.
 
-- unbenutzte Tickets
-- unbenutzte Gutscheine
+Folgende Hardware-Komponenten stehen zur Verfügung:
 
-Nach der Durchführung des Veranstaltungsabschlusses soll für jeden Daten-Typen die Information bereitgestellt werden, wie viele Datensätze betroffen sind.
+* Drehsperre
+* Funkhandscanner
+* Mobiles Scan-Terminal
 
-Die Durchführung des Prozesses soll zu einem geplanten Ausführungszeitpunkt geschehen. Ein Veranstaltungsabschluss darf erst nach dem Ende der jeweiligen Veranstaltung geplant werden.
+*Hinweis: Die Implementierung der der Hardware-Reservierung muss nur mock-artig / dummyhaft geschehen.*
 
-### Schnittstellen-Anforderung
+### 3. Dokumentation der API-Endpunkte (optional)
 
-Über die Schnittstelle soll der Prozess zum Veranstaltungsabschluss angestoßen werden können und jederzeit den aktuellen den Status des Prozesses abgerufen werden können.
-Die Konsumenten der Schnittstellen sollen die Information, ob ein Veranstaltungsabschluss für eine Veranstaltung durchgeführt werden kann, abrufen können.
+Neben der implementierten Schnittstelle wird auch eine Dokumentation dieser Schnittstelle benötigt.
+Diese soll den potenziellen Konsumenten der Schnittstellen einen Überblick über alle verfügbaren Endpunkte geben.
+Zu jedem dieser Endpunkte soll dokumentiert sein, welche Daten der Endpunkt vom Konsumenten entgegennimmt und welche Daten von der Schnittstelle übertragen werden.
 
-*Hinweis: Die Schnittstelle soll eine Mock-Implementierung des Veranstaltungsabschlusses verwenden, die zusätzlich geschaffen werden muss*
+Wie die Dokumentation der Schnittstelle erfolgt, kann selbst festgelegt werden.
