@@ -7,7 +7,7 @@
 
 ## Bearbeitungshinweis
 
-Zur Bearbeitung der Code-Challenge dieses Git-Repository mittels clonen.
+Zur Bearbeitung der Code-Challenge dieses Git-Repository clonen.
 Anschließend die Repository in VSCode oder im Visual Studio öffnen und mit der Lösung der Aufgaben beginnen.
 Nach Abschluss der Bearbeitung den Source-Code als ZIP-Archiv per E-Mail dem Ansprechpartner bei ADITUS bereitstellen. 
 
