@@ -47,6 +47,8 @@ Statistiken für Vor-Ort-Veranstaltungen | GET https://onsite-eventstatistics.az
 
 Für den Fall, dass eine Veranstaltung vom Typ "Hybrid" ist, müssen die Statistiken von beiden Datenquellen abgerufen werden.
 
+Hinweis: Damit die Datenquellen funktionieren, muss als Event-ID eine gültige ID im GUID-Format übermittelt werden. (Beispiel: https://onlineevent-statistics.azurewebsites.net/api/statistics/b4b9236b-69bc-4ce3-b923-592786e9c881 bzw. https://onsite-eventstatistics.azurewebsites.net/api/b4b9236b-69bc-4ce3-b923-592786e9c881)
+
 ### 2. Hardware-Reservierung einer Veranstaltung
 
 Die Schnittstelle soll um einen Prozess zur Reservierung von Hardware zur Zutrittskontrolle erweitert werden.
