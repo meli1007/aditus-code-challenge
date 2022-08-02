@@ -63,7 +63,7 @@ Folgende Hardware-Komponenten stehen zur Verfügung:
 * Funkhandscanner
 * Mobiles Scan-Terminal
 
-*Hinweis: Die Implementierung der der Hardware-Reservierung muss nur mock-artig / dummyhaft geschehen.*
+*Hinweis: Die Implementierung der Hardware-Reservierung muss nur mock-artig / dummyhaft geschehen.*
 
 ### 3. Dokumentation der API-Endpunkte (optional)
 
