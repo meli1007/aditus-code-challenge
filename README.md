@@ -42,12 +42,12 @@ Je nach Typ der Veranstaltung können folgende URLs angefragt werden, um die Sta
 
 Datenquelle                             | URL
 --------------------------------------- | ------------------------ 
-Statistiken für Online-Veranstaltungen  | GET https://onlineevent-statistics.azurewebsites.net/api/statistics/:eventId
-Statistiken für Vor-Ort-Veranstaltungen | GET https://onsite-eventstatistics.azurewebsites.net/api/:id
+Statistiken für Online-Veranstaltungen  | GET https://codechallenge-statistics.azurewebsites.net/api/online-statistics/:eventId
+Statistiken für Vor-Ort-Veranstaltungen | GET https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/:eventId
 
 Für den Fall, dass eine Veranstaltung vom Typ "Hybrid" ist, müssen die Statistiken von beiden Datenquellen abgerufen werden.
 
-*Hinweis: Damit die Datenquellen funktionieren, muss als Event-ID eine gültige ID im GUID-Format übermittelt werden. (Beispiel: https://onlineevent-statistics.azurewebsites.net/api/statistics/b4b9236b-69bc-4ce3-b923-592786e9c881 bzw. https://onsite-eventstatistics.azurewebsites.net/api/b4b9236b-69bc-4ce3-b923-592786e9c881)*
+*Hinweis: Damit die Datenquellen funktionieren, muss als Event-ID eine gültige ID im GUID-Format übermittelt werden. (Beispiel: https://codechallenge-statistics.azurewebsites.net/api/online-statistics/b4b9236b-69bc-4ce3-b923-592786e9c881 bzw. https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/b4b9236b-69bc-4ce3-b923-592786e9c881)*
 
 ### 2. Hardware-Reservierung einer Veranstaltung
 
