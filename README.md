@@ -2,7 +2,7 @@
 
 ## Voraussetzungen
 
-- .NET6-SDK
+- .NET8-SDK
 - VSCode oder Visual Studio
 
 ## Bearbeitungshinweis
