@@ -10,7 +10,8 @@
 * Git-Repository clonen
 * Repository in VSCode oder Visual Studio öffnen
 * Aufgaben bearbeiten
-* Nach Bearbeitung den Source-Code als ZIP-Archiv per E-Mail dem Ansprechpartner bereitstellen
+* Nach Bearbeitung die Lösung in einem eigenen Git-Repository bereitstellen
+* Einen Link zum Repository per E-Mail dem Ansprechpartner schicken
 
 ## Kontext
 
