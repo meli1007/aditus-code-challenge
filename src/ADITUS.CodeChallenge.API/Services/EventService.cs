@@ -1,13 +1,17 @@
+using System.Net.Http;
+using ADITUS.CodeChallenge.API.Services;
 using ADITUS.CodeChallenge.API.Domain;
+using Newtonsoft.Json;
 
 namespace ADITUS.CodeChallenge.API.Services
 {
   public class EventService : IEventService
   {
     private readonly IList<Event> _events;
-
-    public EventService()
+    private readonly HttpClient _httpClient;
+    public EventService(HttpClient httpClient)
     {
+      _httpClient = httpClient;
       _events = new List<Event>
       {
         new Event
@@ -68,5 +72,85 @@ namespace ADITUS.CodeChallenge.API.Services
     {
       return Task.FromResult(_events);
     }
+    public async Task<(List<EventOnsite>, List<EventOnline>, List<EventHybrid>)> GetEventsWithStatistics()
+    {
+      
+      var eventOnsite = new List<EventOnsite>();
+      var eventOnline = new List<EventOnline>();
+      var eventHybrid = new List<EventHybrid>();
+
+      foreach (var myEvent in _events)
+      {
+        List<string> apiUrls = new List<string>();
+        HttpResponseMessage response;
+
+        switch (myEvent.Type)
+        {
+          case EventType.OnSite:
+            apiUrls.Add($"https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/{myEvent.Id}");
+            break;
+
+          case EventType.Online:
+            apiUrls.Add($"https://codechallenge-statistics.azurewebsites.net/api/online-statistics/{myEvent.Id}");
+            break;
+
+          case EventType.Hybrid:
+            apiUrls.Add($"https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/{myEvent.Id}");
+            apiUrls.Add($"https://codechallenge-statistics.azurewebsites.net/api/online-statistics/{myEvent.Id}");
+            break;
+        }
+
+        EventOnsite onsiteStatistic = null;
+        EventOnline onlineStatistic = null;
+
+        foreach (var apiUrl in apiUrls)
+        {
+          response = await _httpClient.GetAsync(apiUrl);
+          if (response.IsSuccessStatusCode)
+          {
+            var jsonData = await response.Content.ReadAsStringAsync();
+
+            if (apiUrl.Contains("onsite-statistics"))
+            {
+              onsiteStatistic = JsonConvert.DeserializeObject<EventOnsite>(jsonData);
+              onsiteStatistic.Id = myEvent.Id;
+              onsiteStatistic.Type = myEvent.Type;
+              eventOnsite.Add(onsiteStatistic);
+            }
+            else if (apiUrl.Contains("online-statistics"))
+            {
+              onlineStatistic = JsonConvert.DeserializeObject<EventOnline>(jsonData);
+              onlineStatistic.Id = myEvent.Id;
+              onlineStatistic.Type = myEvent.Type;
+              eventOnline.Add(onlineStatistic);
+            }
+          }
+          else
+          {
+            throw new HttpRequestException("Error al obtener datos de la API.");
+          }
+        }
+
+        if (myEvent.Type == EventType.Hybrid && onsiteStatistic != null && onlineStatistic != null)
+        {
+          var combinedStatistics = new EventHybrid
+          {
+            Id = myEvent.Id,
+            Type = myEvent.Type,
+            Attendees = onlineStatistic.Attendees,
+            Invites = onlineStatistic.Invites,
+            Visits = onlineStatistic.Visits,
+            VirtualRooms = onlineStatistic.VirtualRooms,
+            VisitorsCount = onsiteStatistic.VisitorsCount,
+            ExhibitorsCount = onsiteStatistic.ExhibitorsCount,
+            BoothsCount = onsiteStatistic.BoothsCount
+          };
+          eventHybrid.Add(combinedStatistics);
+        }
+      }
+
+      return (eventOnsite, eventOnline, eventHybrid);
+    }
+
   }
 }

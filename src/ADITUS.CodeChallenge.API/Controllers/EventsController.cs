@@ -15,6 +15,7 @@ namespace ADITUS.CodeChallenge.API
 
     [HttpGet]
     [Route("")]
+    //Holt alle Events
     public async Task<IActionResult> GetEvents()
     {
       var events = await _eventService.GetEvents();
@@ -23,6 +24,7 @@ namespace ADITUS.CodeChallenge.API
 
     [HttpGet]
     [Route("{id}")]
+    //Holt Event je nach Id
     public async Task<IActionResult> GetEvent(Guid id)
     {
       var @event = await _eventService.GetEvent(id);
@@ -30,7 +32,6 @@ namespace ADITUS.CodeChallenge.API
       {
         return NotFound();
       }
-
       return Ok(@event);
     }
   }

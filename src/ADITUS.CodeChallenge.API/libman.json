@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "jquery.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "jquery-validate@1.21.0",
+      "destination": "wwwroot/lib/jquery-validation/",
+      "files": [
+        "jquery.validate.js",
+        "additional-methods.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "@aipmorg/assets-favicons@1.5.0",
+      "destination": "wwwroot/aipmorg/assets-favicons/",
+      "files": [
+        "assets/favicon.ico"
+      ]
+    },
+    {
+      "library": "bootstrap@5.3.3",
+      "destination": "wwwroot/lib/bootstrap/dist/css/"
+    },
+    {
+      "library": "Chart.js@4.4.1",
+      "destination": "wwwroot/assets/js/Chart.js/"
+    },
+    {
+      "library": "vue-chartjs@5.3.1",
+      "destination": "wwwroot/assets/js/vue-chartjs/"
+    }
+  ]
+}

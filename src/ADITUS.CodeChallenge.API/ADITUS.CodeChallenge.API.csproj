@@ -5,4 +5,72 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\bootstrap\dist\css\bootstrap\**" />
+    <Compile Remove="wwwroot\lib\bootstrap\dist\css\css\**" />
+    <Compile Remove="wwwroot\lib\bootstrap\dist\css\js\**" />
+    <Compile Remove="wwwroot\lib\bootstrap\dist\css\scss\**" />
+    <Compile Remove="wwwroot\lib\bootstrap\js\**" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap\**" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\css\**" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\js\**" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\scss\**" />
+    <Content Remove="wwwroot\lib\bootstrap\js\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\dist\css\bootstrap\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\dist\css\css\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\dist\css\js\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\dist\css\scss\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\js\**" />
+    <None Remove="wwwroot\lib\bootstrap\dist\css\bootstrap\**" />
+    <None Remove="wwwroot\lib\bootstrap\dist\css\css\**" />
+    <None Remove="wwwroot\lib\bootstrap\dist\css\js\**" />
+    <None Remove="wwwroot\lib\bootstrap\dist\css\scss\**" />
+    <None Remove="wwwroot\lib\bootstrap\js\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\IStatisticsServices.cs" />
+    <Compile Remove="Services\StatisticsService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\vue\dist\favicon.ico" />
+    <Content Remove="wwwroot\vue\dist\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="vue-project\.editorconfig" />
+    <Content Include="vue-project\.gitignore" />
+    <Content Include="vue-project\src\assets\base.css" />
+    <Content Include="vue-project\src\assets\logo.svg" />
+    <Content Include="vue-project\src\assets\main.css" />
+    <Content Include="vue-project\env.d.ts" />
+    <Content Include="vue-project\eslint.config.js" />
+    <Content Include="vue-project\index.html" />
+    <Content Include="vue-project\public\favicon.ico" />
+    <Content Include="vue-project\README.md" />
+    <Content Include="vue-project\src\App.vue" />
+    <Content Include="vue-project\src\components\icons\IconCommunity.vue" />
+    <Content Include="vue-project\src\components\icons\IconDocumentation.vue" />
+    <Content Include="vue-project\src\components\icons\IconEcosystem.vue" />
+    <Content Include="vue-project\src\components\icons\IconSupport.vue" />
+    <Content Include="vue-project\src\components\icons\IconTooling.vue" />
+    <Content Include="vue-project\src\main.ts" />
+    <Content Include="vue-project\src\router\index.ts" />
+    <Content Include="vue-project\vite.config.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\index-B6krS0QR.js" />
+    <None Include="wwwroot\assets\index-D3m36WSi.css" />
+    <None Include="wwwroot\vue\dist\favicon.ico" />
+    <None Include="wwwroot\vue\favicon.ico" />
+    <None Include="wwwroot\index.html" />
+  </ItemGroup>
+
 </Project>
