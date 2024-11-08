@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Veranstaltungs-Statistiken</h1>
+    <h1>Veranstaltungen-Statistiken</h1>
     <BarChart :chartData="chartData" :chartOptions="chartOptions"/>
   </div>
 </template>
@@ -106,13 +106,5 @@
   BarChart {
     max-width: 100vh;
     height: 100%;
-  }
-  @media (min-width: 1024px) {
-    .container {
-      max-width: 100vh;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-    }
   }
 </style>

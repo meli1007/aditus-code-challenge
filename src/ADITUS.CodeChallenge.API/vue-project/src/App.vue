@@ -1,26 +1,27 @@
-
 <template>
   <header>
     <div id="app">
     </div>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/statistics">Statistics</RouterLink>
+        <RouterLink to="/statistics">Statistiken</RouterLink>
         <RouterLink to="/reservation">Hardware Reservieren</RouterLink>
         <RouterLink to="/release">Freigabe zur Reservierung</RouterLink>
       </nav>
     </div>
   </header>
   <RouterView />
+  <h1>Herzlich Willkommen zu meiner Code-Challenge Lösung :-)!</h1>
+  <p>Bitte klicken Sie oben rechts weiter zu navigieren</p>
 </template>
 
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({});
-</script>
 
+  import { defineComponent, ref } from 'vue';
+  export default defineComponent({});
+
+</script>
 
 
 
@@ -78,7 +79,7 @@
       display: flex;
       margin: 0px;
       padding: 0px;
-      font-size: 1rem;
+      font-size: 2rem;
     }
   }
 </style>

@@ -8,7 +8,7 @@ namespace ADITUS.CodeChallenge.API.Services
     Task<Event> GetEvent(Guid id);
     //Holt alle Events
     Task<IList<Event>> GetEvents();
-
+    //ruft eine Reihe von nach Typ sortierten Events-Statistiken ab und gibt diese zurück
     Task<(List<EventOnsite> eventOnsite, List<EventOnline> eventOnline, List<EventHybrid> eventHybrid)> GetEventsWithStatistics();
   }
 }

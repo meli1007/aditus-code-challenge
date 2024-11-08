@@ -3,10 +3,16 @@
     <h1>Hardware reservieren</h1>
     <div class="reservation-form">
       <form @submit.prevent="submitReservation">
+        <label for="eventSelect">Bitte wählen Sie ein Event aus: </label>
+        <select v-model="selectedEventId" id="eventSelect" required>
+          <option v-for="event in events" :key="event.id" :value="event.id">
+            {{ event.name }} ({{ event.startDate }} - {{ event.endDate }})
+          </option>
+        </select>
         <div class="hardware-data">
           <!--<div class="hardware-name">
-            ausgewählten Hardware-Components: {{ checkedNames }}
-          </div>-->
+      ausgewählten Hardware-Components: {{ checkedNames }}
+    </div>-->
           <p class="warning"><strong>Hinweis! Die Reservierung soll mind. 4 Wochen der Event passieren!</strong></p><br />
           <div v-for="(hardware, index) in components" :key="hardware.id">
             <input type="checkbox"
@@ -32,15 +38,9 @@
             </div>
           </div>
         </div>
-          <label for="eventSelect">Bitte wählen Sie ein Event aus: </label>
-          <select v-model="selectedEventId" id="eventSelect" required>
-            <option v-for="event in events" :key="event.id" :value="event.id">
-              {{ event.name }} ({{ event.startDate }} - {{ event.endDate }})
-            </option>
-          </select>
-          <div class="button-send">
-            <button type="submit">Reservar</button>
-          </div>
+        <div class="button-send">
+          <button type="submit" class="reserv-button">Reservieren</button>
+        </div>
       </form>
       <div v-if="reservationMessage" class="message">
         {{ reservationMessage }}
@@ -106,15 +106,23 @@
       alert("Wählen Sie ein gültiges Event aus.");
       return;
     }
-    // Filtra los componentes que están seleccionados y tienen una cantidad mayor que 0
+    // Filtert ausgewählte Komponenten, deren Menge größer als 0 ist
     const selectedComponents = components.value.filter((_, index) => {
       return checkedNames.value.includes(components.value[index].name) && counts.value[index] > 0;
     });
+    console.log(selectedComponents);
     // erstellt die Arrays „hardwareIds“, „quantities“ und „selectedHardwareNames“.
     const hardwareIds = selectedComponents.map(hardware => hardware.id);
-    const quantities = selectedComponents.map((_, index) => counts.value[index]);
+    const quantities = selectedComponents.map((component) => {
+      const componentIndex = components.value.findIndex(c => c.id === component.id);
+      if(componentIndex !== -1){
+        return counts.value[componentIndex];
+      }else{
+        return 0;
+      }
+    });
     const selectedHardwareNames = selectedComponents.map(hardware => hardware.name);
-
+    console.log(quantities);
     if (hardwareIds.length === 0) {
       alert('Wählen Sie mindestens eine Komponente mit einer Anzahl größer als 0 aus.');
       return;
@@ -189,8 +197,9 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
-  .button-send {
+  .button-send, .reserv-button {
     padding: 12px;
+    border: none;
     font-weight: bold;
     font-size: 1em;
     border: none;

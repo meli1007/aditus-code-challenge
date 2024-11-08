@@ -20,29 +20,50 @@ namespace ADITUS.CodeChallenge.API.Services
         _cache.Set(CacheKey, new List<Reservation>());
       }
     }
-    public Task<bool> CheckAvailability(List<Guid> hardwareIds, List<int> quantities, DateTime startDate, DateTime endDate, Guid eventId)
+    public async Task<bool> CheckAvailability(List<Guid> hardwareIds, List<int> quantities, DateTime startDate, DateTime endDate, Guid eventId)
     {
       //Reservierung soll mind. 4 Wochen vor der StarDate von der Event passieren
       if ((startDate - DateTime.Now).TotalDays < 28)
       {
-        return Task.FromResult(false);
+        return false;
       }
       var reservations = _cache.Get<List<Reservation>>(CacheKey);
 
-      foreach (var hardwareId in hardwareIds)
+      // prüft, ob es für ein Event schon einer Reservierung gibt
+      var existingReservation = reservations.FirstOrDefault(r => r.EventId == eventId);
+      if (existingReservation != null)
       {
-        // prüf, ob eine Reservierung für den Komponenten vorhanden ist
-        var hasConflictingReservation = reservations.Any(reservation =>
-          reservation.EventId != eventId && //verhindert, dass zwei verschiedene Events mit demselben Datum dieselbe Hardware reservieren
-          reservation.HardwareIds.Contains(hardwareId) &&
-          (startDate == reservation.EndDate && endDate == reservation.StartDate)); // Konflikte bei gleichen Datum 
+        return false; 
+      }
+      var reservedQuantities = new Dictionary<Guid, int>();
 
-        if (hasConflictingReservation)
+      for (var i = 0; i < hardwareIds.Count; i++)
+      {
+        var currentHardwareId = hardwareIds[i];
+        var quantityToReserve = quantities[i];
+
+        // aktuelle info von der Hardware
+        var hardware = await _hardwareService.GetComponent(currentHardwareId);
+        if (hardware == null)
         {
-          return Task.FromResult(false);
+          return false; // Hardware nicht gefunden
+        }
+
+        // kalkuliert den Gesamtbetrag der bestehenden Reservierungen für die Hardware zu diesen Terminen
+        var totalReservedCount = reservations
+            .Where(reservation => reservation.HardwareIds.Contains(currentHardwareId) &&
+                                  reservation.StartDate == startDate &&
+                                  reservation.EndDate == endDate)
+            .Sum(reservation => reservation.Quantities[reservation.HardwareIds.IndexOf(currentHardwareId)]);
+
+        // prüft die Verfügbarkeit unter Berücksichtigung der reservierten Gesamtmenge und der neuen angeforderten Menge
+        if (totalReservedCount + quantityToReserve > hardware.Amount)
+        {
+          return false; // Es gibt kein genüg Menge für dieser Hardware
         }
       }
-      return Task.FromResult(true); //Reservierung hat geklappt
+
+      return true; //Reservierung hat geklappt
     }
 
     public async Task<IEnumerable<Reservation>> GetAllReservations()
@@ -62,15 +83,6 @@ namespace ADITUS.CodeChallenge.API.Services
     {
       // holt alle Liste von Reservierung aus dem Cache
       var reservations = _cache.Get<List<Reservation>>(CacheKey);
-      // Prüft, ob bereits eine Reservierung für dasselbe Event und dieselbe Hardware besteht
-      var hasExistingReservation = reservations.Any(r =>
-        r.EventId == eventId &&
-        r.HardwareIds.Intersect(hardwareIds).Any()); // verhindert eine Überschneidung von Veranstaltung und Reservierung
-      if (hasExistingReservation)
-      {
-        // wenn Reservierung vorhanden ist, dann wird keiner neu gemacht
-        return false;
-      }
 
       // Verfügbarkeit von Hardware vor dem Reservierung weiter püfen
       if (!await CheckAvailability(hardwareIds, quantities, startDate, endDate, eventId))
@@ -80,19 +92,20 @@ namespace ADITUS.CodeChallenge.API.Services
 
       var hardwareNames = new List<string>();
       var reservedQuantities = new List<int>(); // Zum Speichern reservierter Mengen pro Event
-
+      
       // Menge für die Reservierung
       for (var i = 0; i < hardwareIds.Count; i++)
       {
         var hardwareId = hardwareIds[i];
-        var quantityToReserve = quantities[i]; // wie viel man reservieren möchte
+        var quantityToReserve = quantities[i];
+         // wie viel man reservieren möchte
 
         var hardware = await _hardwareService.GetComponent(hardwareId);
-
         hardwareNames.Add(hardware.Name);
-        reservedQuantities.Add(quantityToReserve); // reservierte Menge für diesen Event speichern
+        reservedQuantities.Add(quantityToReserve);
+         // reservierte Menge für diesen Event speichern
       }
-
+     
       //neue Reservierung hinzufügen
       var newReservation = new Reservation
       {

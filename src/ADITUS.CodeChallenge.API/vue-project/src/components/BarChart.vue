@@ -26,9 +26,6 @@
       const chartRef = ref<HTMLCanvasElement | null>(null);
       let chartInstance: Chart | null = null;
 
-      console.log('chartData:', props.chartData);
-      console.log('chartOptions:', props.chartOptions);
-
       const createChart = () => {
         if (chartRef.value) {
           if (chartInstance) {
@@ -69,13 +66,5 @@
   canvas {
     max-width: 100vh;
     height: 400px;
-  }
-  @media (min-width: 1024px) {
-    .container-graphic {
-      max-width: 100vh;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-    }
   }
 </style>

@@ -66,8 +66,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\assets\index-B6krS0QR.js" />
-    <None Include="wwwroot\assets\index-D3m36WSi.css" />
+    <None Include="wwwroot\assets\index-BNlyuR3C.js" />
+    <None Include="wwwroot\assets\index-DMjeZk3D.css" />
     <None Include="wwwroot\vue\dist\favicon.ico" />
     <None Include="wwwroot\vue\favicon.ico" />
     <None Include="wwwroot\index.html" />

@@ -148,7 +148,6 @@ namespace ADITUS.CodeChallenge.API.Services
           eventHybrid.Add(combinedStatistics);
         }
       }
-
       return (eventOnsite, eventOnline, eventHybrid);
     }
 
