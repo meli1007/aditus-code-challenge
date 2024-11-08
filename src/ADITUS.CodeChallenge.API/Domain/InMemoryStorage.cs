@@ -1,6 +1,6 @@
 ﻿namespace ADITUS.CodeChallenge.API.Domain
 {
-  public class InMemoryStorage
+  public record InMemoryStorage
   {
     public List<Reservation> Reservations { get; set; } = new List<Reservation>();
   }

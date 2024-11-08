@@ -1,6 +1,6 @@
 ﻿namespace ADITUS.CodeChallenge.API.Domain
 {
-  public class EventWithHardware
+  public record EventWithHardware
   {
     public Guid Id { get; set; }  
     public string Name { get; set; } 

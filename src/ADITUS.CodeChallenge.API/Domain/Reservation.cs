@@ -1,6 +1,6 @@
 ﻿namespace ADITUS.CodeChallenge.API.Domain
 {
-  public class Reservation
+  public record Reservation
   {
     public Guid Id { get; set; } = Guid.NewGuid(); // neue Guid, wenn eine Reservierung gemacht wird
     public Guid EventId { get; set; } 

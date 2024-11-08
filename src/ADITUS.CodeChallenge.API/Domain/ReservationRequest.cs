@@ -1,6 +1,6 @@
 ﻿namespace ADITUS.CodeChallenge.API.Domain
 {
-  public class ReservationRequest
+  public record ReservationRequest
   {
     public Guid ReservationId { get; set; }
     public List<string> HardwareName { get; set; }
